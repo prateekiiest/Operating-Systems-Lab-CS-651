@@ -1,0 +1,51 @@
+
+
+Computing Sum of elements in an array using the concept of threads
+
+In this case,  given an array , we need to compute the sum of the elements of the array using the concept of threads.
+
+We define an input array, an output array and a global output array (which is initialized to 0)
+
+STAGE 1
+
+	In my implementation, we have an array of n elements. We compute the sum of the first and second element through the first thread, the sum of the third and fourth element using the second thread and so on.
+
+	We compute the sum using the following formula.
+	We have an input array and an output array of the same size.
+
+	So,
+		 
+	 	input_array[2i] + input_array[2i+1] = output_array[2i]
+	 	output_array[2i+1] = 0 (set to some invalid, denoting that this block is empty)
+
+	 	we then update the input_array = output_array
+	 	and the output_array = global_output
+
+	So this is the first stage, in our case, `stag` = 1, for this.
+
+
+STAGE 2
+
+	So we now have (first+second) element, (third+fourth) element and so on. Hence the number of elements get halved at each stage. In stage 2 thus, the number of elements is now (n/2).
+
+	Now when we compute the sum of the elements in second stage, every element occurs with one gap away from each other.
+
+	Hence in order to compute the  sum of the array, we use the first and third element of the array using the following method.
+
+
+	input_array[4i] + input_array[4i+2] = output_array[4i]
+
+	So at each stage, the the iterate value gets multiplied by 2.
+
+
+	Similarly at next stage, we get (8i) and (8i+4)
+
+
+This is how we get summation of all the elements at the last.
+
+
+
+
+
+
+
